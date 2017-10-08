@@ -18,19 +18,23 @@ int main()
 
     mysh_parse_command(buf, &argc, &argv);
 
-    if (strcmp(buf, "") == 0) {
+    if (strcmp(argv[0], "") == 0) {
       goto release_and_continue;
-    } else if (strcmp(argv[0], "cd") == 0) {
+    }
+	else if (strcmp(argv[0], "cd") == 0) {
       if (do_cd(argc, argv)) {
         fprintf(stderr, "cd: Invalid arguments\n");
       }
-    } else if (strcmp(argv[0], "pwd") == 0) {
+    }
+	else if (strcmp(argv[0], "pwd") == 0) {
       if (do_pwd(argc, argv)) {
         fprintf(stderr, "pwd: Invalid arguments\n");
       }
-    } else if (strcmp(argv[0], "exit") == 0) {
-      goto release_and_exit;
-    } else {
+    }
+	else if (strcmp(argv[0], "exit") == 0) {
+	  goto release_and_exit;
+    }
+	else {
       fprintf(stderr, "%s: command not found\n", argv[0]);
     }
 release_and_continue:
